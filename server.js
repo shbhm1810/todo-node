@@ -6,14 +6,19 @@ const connectDB = require('./config/dbConnection')
 var bodyParser = require('body-parser')
 
 connectDB()
+
 const app = express()
+app.use(cookies())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-app.use(cookies())
 
-app.use('/register',require('./routes/registerUser'))
-app.use('/login',require('./routes/loginUser'))
-app.use('/logout',require('./routes/logout'))
+
+app.use('/register',require('./routes/auth/registerUser'))
+app.use('/login',require('./routes/auth/loginUser'))
+app.use('/logout',require('./routes/auth/logout'))
+app.use('/addItem',require('./routes/todo/addTodoItem'))
+app.use('/editItem',require('./routes/todo/editTodoItem'))
+app.use('/deleteItem',require('./routes/todo/deleteTodoItem'))
 
 
 

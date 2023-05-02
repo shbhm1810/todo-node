@@ -10,11 +10,17 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    todoItems: {
-        type: Array,
-        default: [],
-        required: false
-    },
+    todoItems: [{
+        title: {
+            type: String,
+            required: true
+        },
+        isCompleted: {
+            type: Boolean,
+            required: false
+        },
+        itemId: { type: Schema.ObjectId , auto: true }
+    }],
     refreshToken: String
 })
 
